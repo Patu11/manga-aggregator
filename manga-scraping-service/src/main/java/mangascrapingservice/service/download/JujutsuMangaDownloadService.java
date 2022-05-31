@@ -24,9 +24,9 @@ public class JujutsuMangaDownloadService implements MangaDownloadService {
 	private static final String JUJUTSU_URL = "https://jujustukaisen.com/";
 	private static final String TITLE = "Jujutsu Kaisen";
 	private static final String DESCRIPTION = """
-			Jujutsu Kaisen (呪術廻戦, “Sorcery Fight”) is a Japanese manga series written and illustrated by Gege Akutami,
+			Jujutsu Kaisen is a Japanese manga series written and illustrated by Gege Akutami,
 			serialized in Weekly Shōnen Jump since March 5, 2018. The individual chapters are collected and published by
-			Shueisha, with six tankōbon volumes released as of July 2019.
+			Shueisha.
 			""";
 
 	private static final String META_TAG = "meta";
