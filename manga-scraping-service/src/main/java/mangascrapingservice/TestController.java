@@ -1,5 +1,7 @@
 package mangascrapingservice;
 
+import mangascrapingservice.model.Manga;
+import mangascrapingservice.service.download.OnePunchMangaDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
 	@Autowired
-	private QueueSender queueSender;
+	private OnePunchMangaDownloadService mangaDownloadService;
 
-	@GetMapping
-	public String send() {
-		queueSender.send("Test message");
-		return "ok. done";
+	@GetMapping("/manga")
+	public Manga send() {
+		return mangaDownloadService.downloadManga();
 	}
+
 }
