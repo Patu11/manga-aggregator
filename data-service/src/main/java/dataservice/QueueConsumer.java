@@ -1,14 +1,20 @@
 package dataservice;
 
+import dataservice.model.MangaMessage;
+import dataservice.service.MangaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class QueueConsumer {
-	
-	@RabbitListener(queues = {"mangaQueue"})
-	public void receive(@Payload String fileBody) {
-		System.out.println("Message " + fileBody);
+
+	private final MangaService mangaService;
+
+	@RabbitListener(queues = {"${manga.send.queue}"})
+	public void receive(MangaMessage mangaMessage) {
+		this.mangaService.saveMangas(mangaMessage.mangas());
+		System.out.println("Saved " + mangaMessage.mangas().size() + " mangas");
 	}
 }
