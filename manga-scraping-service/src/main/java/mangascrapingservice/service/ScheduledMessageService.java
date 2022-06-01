@@ -23,7 +23,7 @@ public class ScheduledMessageService {
 		this.messageSender = messageSender;
 	}
 
-	@Scheduled(cron = "0 0 0/6 ? * * *")
+	@Scheduled(cron = "0 0 0/6 ? * *")
 	public void downloadAndSendManga() {
 		List<Manga> mangas = mangaService.getAllDownloadedMangas();
 		messageSender.send(new MangaMessage(LocalDateTime.now(), mangas));
