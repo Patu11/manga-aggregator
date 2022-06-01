@@ -4,6 +4,7 @@ import dataservice.db.MangaRepository;
 import dataservice.db.model.MangaEntity;
 import dataservice.mapper.MangaMapper;
 import dataservice.model.Manga;
+import dataservice.model.MangaResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,11 @@ public class MangaService {
 		this.mangaRepository.saveAll(mappedMangas);
 	}
 
-	public List<Manga> getAllMangas() {
+	public MangaResponse getAllMangas() {
 		List<MangaEntity> mangas = this.mangaRepository.findAll();
-		return mangas
+		return new MangaResponse(mangas
 				.stream()
 				.map(mangaMapper::mapToModel)
-				.toList();
+				.toList());
 	}
 }
